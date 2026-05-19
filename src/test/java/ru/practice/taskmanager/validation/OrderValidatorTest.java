@@ -30,8 +30,36 @@ class OrderValidatorTest {
     }
 
     @Test
+    void validateShouldRejectBlankId() {
+        Order order = new Order(" ", "Ivan", "Moscow", OrderPriority.REGULAR);
+
+        assertThrows(ValidationException.class, () -> validator.validate(order));
+    }
+
+    @Test
+    void validateShouldRejectNullCustomerName() {
+        Order order = new Order("1", null, "Moscow", OrderPriority.REGULAR);
+
+        assertThrows(ValidationException.class, () -> validator.validate(order));
+    }
+
+    @Test
     void validateShouldRejectBlankCustomerName() {
         Order order = new Order("1", " ", "Moscow", OrderPriority.REGULAR);
+
+        assertThrows(ValidationException.class, () -> validator.validate(order));
+    }
+
+    @Test
+    void validateShouldRejectNullAddress() {
+        Order order = new Order("1", "Ivan", null, OrderPriority.REGULAR);
+
+        assertThrows(ValidationException.class, () -> validator.validate(order));
+    }
+
+    @Test
+    void validateShouldRejectBlankAddress() {
+        Order order = new Order("1", "Ivan", " ", OrderPriority.REGULAR);
 
         assertThrows(ValidationException.class, () -> validator.validate(order));
     }

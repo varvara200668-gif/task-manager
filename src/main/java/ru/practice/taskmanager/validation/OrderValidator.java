@@ -1,7 +1,7 @@
 package ru.practice.taskmanager.validation;
 
+import ru.practice.taskmanager.annotation.NotNull;
 import ru.practice.taskmanager.annotation.OrderType;
-import ru.practice.taskmanager.annotation.Validate;
 import ru.practice.taskmanager.model.OrderPriority;
 
 import java.lang.reflect.Field;
@@ -20,7 +20,7 @@ public class OrderValidator {
     }
 
     private void checkField(Object object, Field field) {
-        if (field.isAnnotationPresent(Validate.class)) {
+        if (field.isAnnotationPresent(NotNull.class)) {
             Object value = getValue(object, field);
 
             if (value == null) {

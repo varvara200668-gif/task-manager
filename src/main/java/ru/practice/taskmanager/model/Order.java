@@ -1,22 +1,22 @@
 package ru.practice.taskmanager.model;
 
+import ru.practice.taskmanager.annotation.NotNull;
 import ru.practice.taskmanager.annotation.OrderType;
-import ru.practice.taskmanager.annotation.Validate;
 
 public class Order {
     private static final String POISON_ID = "POISON";
 
-    @Validate
+    @NotNull
     private final String id;
 
-    @Validate
+    @NotNull
     private final String customerName;
 
-    @Validate
+    @NotNull
     private final String address;
 
     @OrderType
-    @Validate
+    @NotNull
     private final OrderPriority priority;
 
     public Order(String id, String customerName, String address, OrderPriority priority) {
